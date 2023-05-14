@@ -46,6 +46,11 @@ func createChat(convo []openai.ChatCompletionMessage) openai.ChatCompletionRespo
 }
 
 func main() {
+
+	if len(KEY) < 1 {
+		panic("Missing OPEN AI API Key. Make sure to export OPENAI_API_KEY variable. eg export OPENAI_API_KEY=sk-fIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXsk")
+		os.Exit(1)
+	}
 	// This allows the CLI to not be interactive so you can pipe the output eg $ chat-go write a bash loop > loop.sh
 	if len(os.Args) > 1 {
 		resp := createChat([]openai.ChatCompletionMessage{
